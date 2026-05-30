@@ -1,0 +1,777 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JANIFIX - JAPUNK & NIAS</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #141414; color: white; overflow-x: hidden; }
+        
+        /* 1. LAYAR PROFIL */
+        #profile-selector { position: fixed; inset: 0; background: #141414; z-index: 2000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .profile-box { text-align: center; cursor: pointer; }
+        .profile-box img { width: 120px; border-radius: 4px; margin-bottom: 10px; }
+        
+        /* 2. INTRO JANIFIX */
+        .intro { position: fixed; inset: 0; background: black; z-index: 1500; display: none; justify-content: center; align-items: center; }
+        .intro h1 { color: #E50914; font-size: 4rem; font-weight: bold; animation: zoom 2.5s forwards; }
+        @keyframes zoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1.1); opacity: 1; } }
+
+        /* 3. HERO BANNER */
+        header { 
+            height: 85vh; position: relative; overflow: hidden; 
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: #000;
+        }
+        .overlay { position: absolute; inset: 0; background: linear-gradient(to top, #141414 20%, transparent 80%), rgba(0,0,0,0.4); z-index: 1; }
+        .brand-logo { position: absolute; top: 30px; left: 30px; color: #E50914; font-size: 2.2rem; font-weight: bold; z-index: 10; }
+        .text-content { z-index: 10; position: relative; max-width: 600px; }
+        .sub-judul { font-size: 0.8rem; color: #eee; letter-spacing: 3px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        header h1 { font-size: 3rem; margin: 5px 0; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
+        .genre-tags { font-size: 0.85rem; color: #fff; margin: 10px 0; font-weight: bold; }
+        .genre-tags span { color: #E50914; margin-right: 5px; }
+        .header-synopsis { font-size: 0.9rem; color: #ddd; line-height: 1.5; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .coming-soon { background: #E50914; color: white; padding: 4px 8px; border-radius: 2px; font-size: 0.7rem; font-weight: bold; vertical-align: middle; margin-left: 10px; }
+        .btn-play { display: inline-flex; align-items: center; background: white; color: black; padding: 10px 20px; border-radius: 4px; font-weight: bold; text-decoration: none; margin-top: 10px; }
+
+        /* SECTIONS */
+        section { padding: 40px 20px; max-width: 800px; margin: auto; }
+        .title { font-size: 1.5rem; border-left: 4px solid #E50914; padding-left: 10px; margin-bottom: 25px; font-weight: bold; }
+        
+        /* FILM FAVORIT (SWIPE) */
+        .swipe-container { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
+        .swipe-container::-webkit-scrollbar { display: none; }
+        .movie-card { flex: 0 0 140px; text-align: center; }
+        .movie-card img { width: 140px; height: 200px; border-radius: 4px; object-fit: cover; }
+
+      /* CONTAINER UTAMA SAVE THE DATE */
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Jarak antar acara (Akad & Resepsi) */
+    padding: 0 10px;
+}
+
+/* KOTAK SATU ACARA (FOTO + DETAIL) */
+.timeline-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+/* FOTO PREWEDDING DI KIRI */
+.timeline-img {
+    width: 140px; /* Lebar foto, sesuaikan selera */
+    flex-shrink: 0;
+}
+.timeline-img img {
+    width: 100%;
+    border-radius: 6px;
+    aspect-ratio: 16/9; /* Biar fotonya persegi panjang kayak episode film */
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* DETAIL ACARA DI KANAN */
+.timeline-info {
+    flex-grow: 1;
+}
+
+/* LABEL ACARA (MERAH) */
+.event-label {
+    background: #E50914; /* Merah Netflix */
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* TANGGAL BESAR */
+.event-date {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+/* WAKTU (JAM + ZONA WAKTU) */
+.time-tag {
+    background: #333;
+    color: #aaa;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+.time-tag span {
+    color: #888;
+    margin-left: 5px;
+}
+
+/* LOKASI (DESKRIPSI) */
+.event-desc {
+    font-size: 0.85rem;
+    color: #bbb;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* LINK MAPS MERAH */
+.maps-link {
+    color: #E50914;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* TIMER (DIBAWAH) */
+.timer-netflix {
+    background: rgba(229, 9, 20, 0.1); /* Merah transparan */
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 30px;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+        /* EPISODE STYLE */
+        .episode-container { display: flex; flex-direction: column; gap: 25px; }
+        .episode-card { display: flex; gap: 15px; align-items: flex-start; }
+        .episode-img { width: 130px; flex-shrink: 0; }
+        .episode-img img { width: 100%; border-radius: 4px; aspect-ratio: 16/9; object-fit: cover; }
+        .episode-info h4 { margin: 0 0 5px 0; font-size: 1rem; color: white; }
+        .episode-info p { margin: 0; font-size: 0.85rem; color: #aaa; line-height: 1.4; }
+
+        /* CAST & MAPS */
+        .cast-item { text-align: center; margin-bottom: 40px; }
+        .cast-item img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+        .map-frame { height: 250px; background:#333; margin-top: 15px; border-radius: 8px; overflow: hidden; }
+        .gallery-img { flex: 0 0 280px; height: 180px; object-fit: cover; border-radius: 8px; }
+
+        #m-btn { position: fixed; bottom: 20px; right: 20px; background: rgba(229, 9, 20, 0.8); border: none; color: white; width: 50px; height: 50px; border-radius: 50%; z-index: 1000; cursor: pointer; }
+        input, textarea { width: 100%; padding: 15px; background: #333; border: none; color: white; border-radius: 8px; margin-bottom: 10px; }
+/* Gallery Grid 3 Kolom */
+.gallery-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; 
+}
+
+.gallery-item-full {
+    width: 32%; 
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Layar Hitam Zoom */
+#lightbox {
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+} 
+.footer-credit {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to top, #000, #141414); /* Efek gelap yang halus */
+    border-top: 1px solid #333; /* Garis tipis biar rapi */
+    margin-top: 20px;
+}
+
+.footer-credit p {
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 2px;
+    margin: 5px 0;
+    text-transform: uppercase; /* Jadi huruf besar semua biar formal */
+}
+
+.footer-credit span {
+    color: #E50914; /* Warna merah khas Netflix */
+    font-weight: bold;
+}
+
+.heart-icon {
+    display: inline-block;
+    animation: pulse 1.5s infinite; /* Efek jantung berdetak */
+    color: #E50914;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+.footer-credit {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to top, #000, #141414); /* Efek gelap yang halus */
+    border-top: 1px solid #333; /* Garis tipis biar rapi */
+    margin-top: 20px;
+}
+
+.footer-credit p {
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 2px;
+    margin: 5px 0;
+    text-transform: uppercase; /* Jadi huruf besar semua biar formal */
+}
+
+.footer-credit span {
+    color: #E50914; /* Warna merah khas Netflix */
+    font-weight: bold;
+}
+
+.heart-icon {
+    display: inline-block;
+    animation: pulse 1.5s infinite; /* Efek jantung berdetak */
+    color: #E50914;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+    <audio id="tudum" src="tudum.mp3.mp3"></audio>
+    <audio id="music" loop src="music.mp3.mp3"></audio>
+
+    <div id="profile-selector">
+        <h2 style="font-weight: normal; margin-bottom: 30px;">Who's Watching?</h2>
+        <div class="profile-box" onclick="startApp()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png">
+            <p id="guest">Guest</p>
+        </div>
+    </div>
+
+    <div class="intro" id="intro-layer"><h1>JANIFIX</h1></div>
+
+    <div id="main" style="display:none;">
+        <button id="m-btn" onclick="toggleM()">🎵</button>
+
+        <header>
+       <div id="videoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: none; background: #000;">
+    <iframe 
+        src="https://www.instagram.com/reel/DH6VO73ybs-/embed" 
+        style="width: 100%; height: 100%; border: none;" 
+        scrolling="no" 
+        allowtransparency="true" 
+        frameborder="0">
+    </iframe>
+</div>
+
+<video autoplay muted loop playsinline 
+    style="position: absolute; 
+           top: 0; 
+           left: 0; 
+           width: 100%; 
+           height: 100%; 
+           z-index: 0; 
+           object-fit: contain; 
+           /* Rahasianya di sini: top agar menempel ke atas */
+           object-position: top; 
+           background-color: #000;">
+    
+    <source src="trailer.mp4.mp4" type="video/mp4">
+    
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000;"></div>
+</video>
+
+
+<div class="brand-logo">JANIFIX</div>
+<div id="mainOverlay" class="overlay"></div>
+<div class="text-content">
+    <p class="sub-judul">A JANIFIX ORIGINAL SERIES</p>
+    <h1>Japunk & Nias</h1>
+    
+    <p style="font-family: 'Georgia', serif; font-style: italic; color: #E50914; margin: 10px 0; font-size: 1.1rem; letter-spacing: 1px;">
+        #LUCKYASloNgasIhaveYoU
+    </p>
+
+    <div class="genre-tags"><span>#1</span> Romantis • Drama • Emosional</div>
+    
+    <p style="margin: 5px 0; font-size: 1rem; font-weight: bold;">
+        13 Juni 2026 <span class="coming-soon">COMING SOON</span>
+    </p>
+    
+
+    <p class="header-synopsis">Sedih, senang, tangis, tawa, dan bahagia bahagia. Bagian cerita dari dua individu yang tiada ujungnya. Menceritakan kisah, sebagai bagian dari cerita hidup yang nyata. Japunk dan Nias, memulai episode baru. Tidak lagi tentang "aku" atau "kamu", tapi tentag "kita". Sebuah cerita panjang, dimulai dari ikatan pernikahan.</p>
+    
+   <a href="https://www.instagram.com/reel/DH6VO73ybs-/" target="_blank" style="text-decoration: none;">
+    <div class="btn-play" style="cursor: pointer; display: inline-block;">
+        <span id="playIcon">▶</span> <span id="btnText">Trailer Playing</span>
+    </div>
+</a>
+</div>
+        </header>
+
+        <section>
+            <div class="title">Breaking News</div>
+            <div style="background: #222; padding: 15px; border-left: 4px solid #E50914; border-radius: 4px;">
+                <p style="margin: 0; color: #fff; font-weight: bold;">Serial Pernikahan Terpopuler Tahun Ini!</p>
+                <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.85rem;">Halo semuanya! 👋 Melalui pesan singkat ini, kami, Japunk dan Nias, ingin menceritakan kebahagiaan yang selama ini kami simpan. ✨ Akhirnya, sampai di titik dimana kami yakin untuk membangun masa depan bersama. 💍
+
+Kami sadar perjalanan ke depan nggak akan selalu mudah, makanya doa restu dari kalian semua sangat berarti buat kami. 🙏 Thank you for being part of our story. 📖 Kami nggak sabar buat ngerayain momen spesial ini bareng kalian semua di 13 Juni 2026. 🗓️✨</p>
+            </div>
+        </section>
+
+       <section class="favorite-movies">
+
+    <div class="title">Film Favorit Anda</div>
+
+    <style>
+        .swipe-container {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+        }
+
+        .swipe-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .movie-card {
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+
+        .movie-card img {
+            width: 160px;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .movie-card p {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: white;
+        }
+    </style>
+
+    <div class="swipe-container">
+
+        <div class="movie-card">
+            <img src="photo_FF01.png" alt="First Sight"><p>First Sight</p></div>
+
+        <div class="movie-card">
+            <img src="photo_FF02.png" alt="Our Journey"><p>Our Journey</p></div>
+
+        <div class="movie-card">
+            <img src="photo_FF03.png" alt="Proposal"> <p>Proposal</p></div>
+
+        <div class="movie-card">
+            <img src="photo_FF04.png" alt="NikahFix"><p>NikahFix</p> </div>
+
+        <div class="movie-card">
+            <img src="photo_FF05.png" alt="Summer Train"><p>Summer Train</p></div>
+
+        <div class="movie-card">
+            <img src="photo_FF06.png" alt="Forever Us"><p>Forever Us</p></div>
+    </div>
+
+</section>
+
+       <section>
+    <div class="title">Episodes: The Love Story</div>
+    <div class="episode-container">
+        <div class="episode-card">
+            <div class="episode-img"><img src="foto1.png.png"></div>
+            <div class="episode-info">
+                <h4>Eps 1: The First Formula</h4>
+                <p style="text-align: justify;">"Berawal dari teman SMP tanpa rasa, sampai dipertemukan lagi di Olimpiade MTK & Fisika SMA. Chattingan intens yang bikin baper, kami resmi jadian pada 29 September 2019. 👋✨"</p>
+            </div>
+        </div>
+
+        <div class="episode-card">
+            <div class="episode-img"><img src="foto2.png.png"></div>
+            <div class="episode-info">
+                <h4>Eps 2: Hard Mode: LDR</h4>
+                <p style="text-align: justify;">"2 tahun LDR dan backstreet ketika kuliah. Hubungan sempat memanas karena susah komunikasi, tapi kami memilih berjuang, bukan mundur. Cari solusi dengan jadwalin ketemu sebulan sekali dan menabung bersama buat sering main. A real silent struggle! 📱💰"</p>
+            </div>
+        </div>
+
+        <div class="episode-card">
+            <div class="episode-img"><img src="foto3.png"></div>
+            <div class="episode-info">
+                <h4>Eps 3: Level Up</h4>
+                <p style="text-align: justify;">"Setelah wisuda, kami janji kejar karier bareng di Jabodetabek. Akhirnya bisa sering main dan ketemu setiap hari tanpa jarak. Rasanya bahagia banget bisa bareng terus, Finally kita mantap untuk komit tunangan. No more hiding, just us. 🏙️ Senang banget! 🤝"</p>
+            </div>
+        </div>
+
+        <div class="episode-card">
+            <div class="episode-img"><img src="prewed3.jpg"></div>
+            <div class="episode-info">
+                <h4 style="color: #E50914;">Eps 4: The Finale</h4>
+                <p style="text-align: justify; color: #fff;">"Puncak perjuangan dan awal cerita baru kami. No more part two, just our forever story starts here. Janji suci di pelaminan, 13 Juni 2026. Game over for the distance! 🎬✨"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+     <section>
+    <div class="title">Meet The Cast</div>
+
+    <div class="cast-item">
+        <img src="photo_thegroom.jpeg" style="width: 220px; height: 330px;">
+        <h3>Fitrah Japunk Lucky Anto, S.T.</h3>
+        <p style="color:#aaa; font-size: 0.9rem; margin-top: -10px;">Putra dari Bapak Rujianto & Ibu Pariyem</p>
+        <p style="color:#E50914; font-weight:bold;">THE GROOM</p>
+        
+        <a href="https://www.instagram.com/_ant.jp/" target="_blank" class="ig-link">
+            <img src="icon_ig.png" style="width: 30px; height: 30px;" class="ig-icon">
+        </a>
+    </div>
+
+    <div class="cast-item">
+        <img src="photo_thebride.jpeg"style="width: 220px; height: 330px;">
+        <h3>Yunias Sila Wati, S.Pd</h3>
+        <p style="color:#aaa; font-size: 0.9rem; margin-top: -10px;">Putri dari Bapak Ramli & Ibu Sri Wahyuni</p>
+        <p style="color:#E50914; font-weight:bold;">THE BRIDE</p>
+
+        <a href="https://www.instagram.com/matchacute126/" target="_blank" class="ig-link">
+            <img src="icon_ig.png" style="width: 30px; height: 30px;"class="ig-icon">
+        </a>
+    </div>
+</section>
+       <section>
+    <div class="title">Timeline & Location</div>
+    
+    <div class="timeline-list">
+
+        <div class="timeline-item">
+            <div class="timeline-img">
+                <img src="foto_prewed_akad.jpg"> </div>
+            <div class="timeline-info">
+                <span class="event-label">Akad Nikah & Resepsi</span>
+                <h3 class="event-date">Sabtu, 13 Juni 2026</h3>
+                <span class="time-tag">09:00 WIB</span>
+                <p class="event-desc">
+                    Bertempat di Kediaman Mempelai Wanita - Jl. Ir. Sutami No.1, Sri Bawono, Kec. Bandar Sribawono, Kabupaten Lampung Timur, Lampung 34389
+                </p>
+                <a href="https://maps.app.goo.gl/rBJuah1XskBXzZHX6" target="_blank" class="maps-link">Buka Google Maps &gt;&gt;</a>
+            </div>
+        </div>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokasi Acara</title>
+    <style>
+        /* Gaya untuk area (container) Maps */
+        .map-section {
+            text-align: center;
+            max-width: 500px; /* Lebar maksimal agar rapi di desktop */
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .map-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .alamat-teks {
+            color: #666; 
+            font-size: 14px; 
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* Gaya untuk Peta (Iframe) */
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px; /* Membuat sudut peta melengkung */
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Efek bayangan */
+            margin-bottom: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Gaya untuk Tombol Klik */
+        .btn-maps {
+            display: inline-block;
+            background-color: #4285F4; /* Warna biru khas Google */
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn-maps:hover {
+            background-color: #3367D6; /* Warna saat tombol disorot/diklik */
+        }
+    </style>
+</head>
+<body>
+
+        <!-- 1. AREA PETA INTERAKTIF (IFRAME) -->
+        <div class="map-container">
+            <!-- Peta sudah diarahkan ke koordinat lokasi dari link Anda -->
+            <iframe src="https://maps.google.com/maps?q=Warung%20Mbak%20Sisri,%20Jl.%20Ir.%20Sutami%20No.1,%20Sri%20Bawono,%20Bandar%20Sribawono,%20Lampung%20Timur&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ 
+</div>
+       
+    <div class="timer-netflix" id="timer">00 Hari 00:00:00</div>
+</div>
+
+
+<section style="background:#111; padding: 40px 25px;">
+           
+    <div class="title">Digital Gift</div>
+
+    <div style="background:#262626; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom: 20px; text-align: left;">
+        <p style="margin: 0; color: #aaa;">BRI - Fitrah Japunk Lucky Anto</p>
+        <h3 id="norek1" style="margin: 10px 0; font-size: 1.5rem; letter-spacing: 2px;">1380 0100 1088 531</h3>
+        <button onclick="copyNorek1()" style="background:#444; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight: bold;">Salin Rekening</button>
+    </div>
+
+    <div style="background:#262626; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom: 20px; text-align: left;">
+        <p style="margin: 0; color: #aaa;">BCA - Yunias Sila Wati</p>
+        <h3 id="norek2" style="margin: 10px 0; font-size: 1.5rem; letter-spacing: 2px;">2280353321</h3>
+        <button onclick="copyNorek2()" style="background:#444; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight: bold;">Salin Rekening</button>
+    </div>
+</section> 
+
+<section style="background:#111; padding: 40px 25px;">
+            <div class="title">RSVP</div>
+            
+            <form id="rsvpForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="nama" placeholder="Nama Lengkap" required style="width:100%; padding:15px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+                
+                <select id="hadir" style="width:100%; padding:15px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+                    <option value="Hadir">Saya Akan Hadir</option>
+                    <option value="Tidak Hadir">Maaf, Berhalangan</option>
+                </select>
+
+                <textarea id="ucapan" placeholder="Ucapan Terbaikmu" rows="4" required style="width:100%; padding:15px; background:#222; color:white; border:1px solid #333; border-radius:8px;"></textarea>
+                
+                <button type="submit" id="btnKirim" style="width:100%; padding:15px; background:#E50914; color:white; border:none; border-radius:8px; font-weight:bold; cursor: pointer;">KIRIM UCAPAN</button>
+            </form>
+
+            <div id="list-ucapan" style="margin-top: 40px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #E50914;">Ucapan Sahabat:</h3>
+                <div id="konten-ucapan">
+                    <p style="color: #666;">Memuat ucapan...</p>
+                </div>
+            </div>
+        </section>
+    <section style="background:#141414; padding-bottom: 100px;">
+    <div class="title">Gallery Prewedding</div>
+    <div class="gallery-list">
+        <img src="galeri1.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+        <img src="galeri2.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+        <img src="galeri3.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+        <img src="galeri4.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+        <img src="galeri5.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+        <img src="galeri6.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+    </div>
+</section>
+
+<div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="">
+</div>
+    
+    <p style="text-align: center; color: #555; margin-top: 50px;">A JANIFIX ORIGINAL SERIES</p>
+</section>
+<div class="footer-credit">
+    <p>A JANIFIX ORIGINAL SERIES</p>
+    <p>Made with <span class="heart-icon">❤</span> by <span>Japunk & Nias</span></p>
+    <p style="font-size: 0.6rem; margin-top: 15px; opacity: 0.5;">© 2026 JAPUNK & NIAS. ALL RIGHTS RESERVED.</p>
+</div>    
+</div>
+
+<script>
+    // 1. GUEST NAME (FITUR AWAL)
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("guest").innerText = params.get("to") || "Special Guest";
+
+    // 2. START APP & TUDUM (FITUR AWAL)
+    function startApp() {
+        document.getElementById('tudum').play();
+        document.getElementById('profile-selector').style.display = 'none';
+        document.getElementById('intro-layer').style.display = 'flex';
+
+        setTimeout(() => {
+            document.getElementById('intro-layer').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+            document.getElementById('music').play().catch(e => console.log("BGM blocked"));
+            if(document.getElementById('trailerVideo')) document.getElementById('trailerVideo').play();
+            ambilUcapan(); // Memuat ucapan otomatis
+        }, 3000);
+    }
+
+    // 3. MUSIC TOGGLE (FITUR AWAL)
+    function toggleM() {
+        const m = document.getElementById('music');
+        m.paused ? m.play() : m.pause();
+    }
+
+    // 4. COPY NOREK (FITUR AWAL)
+    function copyNorek1() {
+        const nr = document.getElementById('norek1').innerText;
+        navigator.clipboard.writeText(nr);
+        alert("Nomor rekening berhasil disalin!");
+    }
+  // 4. COPY NOREK (FITUR AWAL)
+    function copyNorek2() {
+        const nr = document.getElementById('norek2').innerText;
+        navigator.clipboard.writeText(nr);
+        alert("Nomor rekening berhasil disalin!");
+    }
+    // 5. COUNTDOWN TIMER (FITUR AWAL - JANJI GAK ILANG LAGI)
+    const target = new Date("Juni 13, 2026 09:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const d = target - now;
+        const days = Math.floor(d / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((d % (1000 * 60)) / 1000);
+        const h = hours.toString().padStart(2, '0');
+        const m = mins.toString().padStart(2, '0');
+        const s = secs.toString().padStart(2, '0');
+        const el = document.getElementById("timer");
+        if (el) el.innerText = d > 0 ? days + " Hari " + h + ":" + m + ":" + s : "HARI INI ACARANYA!";
+    }, 1000);
+
+    // 6. GALLERY & TRAILER (FITUR AWAL)
+    function openFull(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function playTrailer() {
+        var videoContainer = document.getElementById('videoContainer');
+        var thumbnail = document.getElementById('thumbnailBg');
+        var overlay = document.getElementById('mainOverlay');
+        var btnText = document.getElementById('btnText');
+
+        thumbnail.style.display = 'none';
+        if(overlay) overlay.style.opacity = '0';
+        videoContainer.style.display = 'block';
+        videoContainer.style.zIndex = '100'; 
+        btnText.innerText = "Watching Trailer...";
+    }
+
+  // 7. RSVP & GOOGLE SHEETS (GANTI DENGAN INI)
+  // Ganti URL dengan link yang barusan kamu kasih
+  const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbxPyIDh3TeUXvdqxPePcNvqk6g12u7vTirUEfn0BKJQhaPhyI1qtPE-tOR1MkdvG9xh5w/exec';
+
+  const rsvpForm = document.getElementById('rsvpForm');
+  if (rsvpForm) {
+      rsvpForm.onsubmit = function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('btnKirim');
+          btn.disabled = true;
+          btn.innerText = 'MENGIRIM...';
+
+          const payload = {
+              nama: document.getElementById('nama').value,
+              hadir: document.getElementById('hadir').value,
+              ucapan: document.getElementById('ucapan').value
+          };
+
+          fetch(URL_SCRIPT, {
+              method: 'POST',
+              mode: 'no-cors', // Menghindari masalah keamanan browser (CORS)
+              body: JSON.stringify(payload)
+          })
+          .then(() => {
+              alert('Ucapan berhasil dikirim!');
+              rsvpForm.reset();
+              btn.disabled = false;
+              btn.innerText = 'KIRIM UCAPAN';
+              // Tunggu 2 detik agar Google Sheets selesai mencatat baru ambil data terbaru
+              setTimeout(ambilUcapan, 2000);
+          })
+          .catch(err => {
+              alert('Terjadi kesalahan, tapi cek daftar ucapan di bawah ya.');
+              btn.disabled = false;
+              btn.innerText = 'KIRIM UCAPAN';
+          });
+      };
+  }
+
+  function ambilUcapan() {
+      const list = document.getElementById('konten-ucapan');
+      if (!list) return;
+
+      fetch(URL_SCRIPT)
+      .then(res => res.json())
+      .then(data => {
+          list.innerHTML = '';
+          if (!data || data.length === 0) {
+              list.innerHTML = '<p style="color: #666;">Belum ada ucapan.</p>';
+              return;
+          }
+          // Membalik urutan agar yang terbaru muncul paling atas
+          data.reverse().forEach(row => {
+              if(row[0]) { // Hanya tampilkan jika kolom nama tidak kosong
+                  list.innerHTML += `
+                      <div style="background: #1f1f1f; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #E50914; text-align: left;">
+                          <strong style="color: #E50914;">${row[0]}</strong> <small style="color: #888;">- ${row[1]}</small>
+                          <p style="margin: 8px 0 0 0; color: #ddd; font-style: italic; font-size: 0.9rem;">"${row[2]}"</p>
+                      </div>
+                  `;
+              }
+          });
+      })
+      .catch(err => console.log("Gagal memuat ucapan:", err));
+  }
+
+  // PANGGIL INI AGAR SAAT WEB DIBUKA, UCAPAN LANGSUNG MUNCUL
+  ambilUcapan();
+</script>
+</body>
+</html>
