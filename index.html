@@ -48,11 +48,55 @@
 .movie-card img { width: 112px; height: 160px; border-radius: 4px; object-fit: cover; }
 
       /* CONTAINER UTAMA SAVE THE DATE */
+.timeline-section {
+    padding: 20px 0;
+}
+
 .timeline-list {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Jarak antar acara (Akad & Resepsi) */
-    padding: 0 10px;
+    gap: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column; /* Membuat konten tersusun ke bawah */
+    gap: 10px;              /* Jarak antara foto dan info */
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.timeline-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.timeline-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;               /* Jarak antar baris teks agar rapat */
+}
+
+/* Reset margin bawaan agar tidak terlalu jauh */
+.timeline-info h3, 
+.timeline-info p, 
+.timeline-info span {
+    margin: 0;
+    padding: 0;
+}
+
+.event-desc {
+    font-size: 0.95rem;
+    margin-top: 8px;        /* Jarak antara deskripsi dan elemen di atasnya */
+}
+
+.maps-link {
+    display: inline-block;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #e74c3c;         /* Warna link maps */
+    font-weight: bold;
 }
 
 /* KOTAK SATU ACARA (FOTO + DETAIL) */
@@ -522,13 +566,15 @@ See you on our special day!<br>
 </section>
 <body>
 
+    
+    
     <section class="timeline-section">
     <div class="title">Timeline & Location</div>
     
     <div class="timeline-list">
         <div class="timeline-item">
             <div class="timeline-img">
-                <img src="foto_prewed_akad.jpg" alt="Foto Akad Nikah & Resepsi"> 
+                <img src="photo_location.jpeg" alt="Foto Akad Nikah & Resepsi"> 
             </div>
             
             <div class="timeline-info">
