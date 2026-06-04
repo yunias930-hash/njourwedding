@@ -903,28 +903,6 @@ See you on our special day!<br>
 }
 </script>
 </script>
-
-<script>
-const movieContainer = document.querySelector('.swipe-container');
-
-let direction = 1;
-
-setInterval(() => {
-    movieContainer.scrollLeft += direction;
-
-    if (
-        movieContainer.scrollLeft >=
-        movieContainer.scrollWidth - movieContainer.clientWidth
-    ) {
-        direction = -1;
-    }
-
-    if (movieContainer.scrollLeft <= 0) {
-        direction = 1;
-    }
-}, 20);
-</script>
-
 </body>
 </html>
 </body>
