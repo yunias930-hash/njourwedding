@@ -49,36 +49,29 @@
 
       /* CONTAINER UTAMA SAVE THE DATE */
 .timeline-section {
-    padding: 20px 0;
+    padding: 25px 15px;
 }
-
-.timeline-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .timeline-item {
     display: flex;
-    flex-direction: column; /* Membuat konten tersusun ke bawah */
-    gap: 10px;              /* Jarak antara foto dan info */
-    max-width: 500px;
-    margin: 0 auto;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.timeline-img {
+    width: 130px;
+    flex-shrink: 0;
 }
 
 .timeline-img img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    border-radius: 4px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
 }
 
 .timeline-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;               /* Jarak antar baris teks agar rapat */
-}
-
-/* Reset margin bawaan agar tidak terlalu jauh */
+    flex: 1;
+}/* Reset margin bawaan agar tidak terlalu jauh */
 .timeline-info h3, 
 .timeline-info p, 
 .timeline-info span {
@@ -439,26 +432,27 @@ See you on our special day!<br>
     <div class="title">Film Favorit Anda</div>
 
     <style>
-        .swipe-container {
-            display: flex;
-            gap: 18px;
-            overflow-x: auto;
-            padding: 10px 0;
-            scroll-behavior: smooth;
-        }
+      .swipe-container {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
 
-        .swipe-container::-webkit-scrollbar {
-            display: none;
-        }
+.swipe-container::-webkit-scrollbar {
+    display: none;
+}
 
         .movie-card {
-            min-width: 160px;
+            min-width: 135px;
             flex-shrink: 0;
         }
 
         .movie-card img {
-            width: 160px;
-            height: 230px;
+            width: 135px;
+            height: 195px;
             object-fit: cover;
             border-radius: 18px;
         }
@@ -585,7 +579,7 @@ See you on our special day!<br>
 
     
     
-    <section class="timeline-section">
+    <section class="timeline-section" style="margin-top:-60px;">
     <div class="title">Timeline & Location</div>
     
     <div class="timeline-list">
@@ -908,5 +902,30 @@ See you on our special day!<br>
     }
 }
 </script>
+</script>
+
+<script>
+const movieContainer = document.querySelector('.swipe-container');
+
+let direction = 1;
+
+setInterval(() => {
+    movieContainer.scrollLeft += direction;
+
+    if (
+        movieContainer.scrollLeft >=
+        movieContainer.scrollWidth - movieContainer.clientWidth
+    ) {
+        direction = -1;
+    }
+
+    if (movieContainer.scrollLeft <= 0) {
+        direction = 1;
+    }
+}, 20);
+</script>
+
+</body>
+</html>
 </body>
 </html>
