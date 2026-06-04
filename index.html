@@ -64,8 +64,8 @@
 
 .timeline-img img {
     width: 100%;
-    border-radius: 4px;
-    aspect-ratio: 16/9;
+    height: 180px;
+    border-radius: 6px;
     object-fit: cover;
 }
 
@@ -101,12 +101,18 @@
 
 @media (max-width: 768px) {
     .timeline-item {
-        flex-direction: column;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
     }
 
-    .timeline-img,
+    .timeline-img {
+        width: 100px;
+        flex-shrink: 0;
+    }
+
     .timeline-info {
-        width: 100%;
+        flex: 1;
     }
 }
 
@@ -602,7 +608,6 @@ See you on our special day!<br>
                     <strong>Jl. Ir. Sutami No.1, Sri Bawono, Kec. Bandar Sribawono, Kabupaten Lampung Timur, Lampung 34389</strong>
                 </p>
                 
-                <a href="#" target="_blank" class="maps-link">Petunjuk Lokasi (Google Maps)</a>
             </div>
         </div>
     </div>
