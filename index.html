@@ -22,11 +22,13 @@
         /* 3. HERO BANNER */
         header { 
             height: 85vh; position: relative; overflow: hidden; 
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: #000;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; background: #000;
         }
         .overlay { position: absolute; inset: 0; background: linear-gradient(to top, #141414 20%, transparent 80%), rgba(0,0,0,0.4); z-index: 1; }
         .brand-logo { position: absolute; top: 30px; left: 30px; color: #E50914; font-size: 2.2rem; font-weight: bold; z-index: 10; }
-        .text-content { z-index: 10; position: relative; max-width: 600px; }
+        .text-content { z-index: 10; position: relative; 
+        width: 100%;
+        max-width: 100%; }
         .sub-judul { font-size: 0.8rem; color: #eee; letter-spacing: 3px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
         header h1 { font-size: 3rem; margin: 5px 0; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
         .genre-tags { font-size: 0.85rem; color: #fff; margin: 10px 0; font-weight: bold; }
@@ -36,7 +38,7 @@
         .btn-play { display: inline-flex; align-items: center; background: white; color: black; padding: 10px 20px; border-radius: 4px; font-weight: bold; text-decoration: none; margin-top: 10px; }
 
         /* SECTIONS */
-        section { padding: 40px 20px; max-width: 800px; margin: auto; }
+        section { padding: 25px 15px; max-width: 100%; margin: 0; }
         .title { font-size: 1.5rem; border-left: 4px solid #E50914; padding-left: 10px; margin-bottom: 25px; font-weight: bold; }
         
 /* FILM FAVORIT (SWIPE) */
@@ -162,8 +164,24 @@
         .episode-img { width: 130px; flex-shrink: 0; }
         .episode-img img { width: 100%; border-radius: 4px; aspect-ratio: 16/9; object-fit: cover; }
         .episode-info h4 { margin: 0 0 5px 0; font-size: 1rem; color: white; }
-        .episode-info p { margin: 0; font-size: 0.85rem; color: #aaa; line-height: 1.4; }
+        .episode-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
+.episode-text.show {
+    -webkit-line-clamp: unset;
+}
+
+.read-more {
+    color: #E50914;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 8px;
+}
         /* CAST & MAPS */
         .cast-item { text-align: center; margin-bottom: 40px; }
         .cast-item img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
@@ -434,9 +452,16 @@ See you on our special day!<br>
         <div class="episode-card">
             <div class="episode-img"><img src="photo_eps01.jpeg"></div>
             <div class="episode-info">
-                <h4>Eps 1: The First Formula</h4>
-                <p style="text-align: justify;">"Japunk dan Nias pertama kali saling mengenal saat duduk di bangku SMP sebagai teman biasa tanpa adanya rasa istimewa. Takdir kemudian mempertemukan mereka kembali dalam ajang Olimpiade Matematika dan Fisika saat SMA. Dari percakapan yang semakin intens, tumbuh kedekatan yang perlahan berubah menjadi perasaan yang lebih dalam. Pada 29 September 2019, their story officially began. ✨"</p>
-            </div>
+    <h4>Eps 1: The First Formula</h4>
+
+    <p class="episode-text" style="text-align: justify;">
+        Japunk dan Nias pertama kali saling mengenal saat duduk di bangku SMP sebagai teman biasa tanpa adanya rasa istimewa. Takdir kemudian mempertemukan mereka kembali dalam ajang Olimpiade Matematika dan Fisika saat SMA. Dari percakapan yang semakin intens, tumbuh kedekatan yang perlahan berubah menjadi perasaan yang lebih dalam. Pada 29 September 2019, their story officially began. ✨
+    </p>
+
+    <span class="read-more" onclick="toggleText(this)">
+        Lihat Selengkapnya
+    </span>
+    </div>
         </div>
 
         <div class="episode-card">
@@ -815,6 +840,17 @@ See you on our special day!<br>
 
   // PANGGIL INI AGAR SAAT WEB DIBUKA, UCAPAN LANGSUNG MUNCUL
   ambilUcapan();
+  function toggleText(btn) {
+    const text = btn.previousElementSibling;
+
+    if (text.classList.contains('show')) {
+        text.classList.remove('show');
+        btn.innerText = 'Lihat Selengkapnya';
+    } else {
+        text.classList.add('show');
+        btn.innerText = 'Sembunyikan';
+    }
+}
 </script>
 </body>
 </html>
