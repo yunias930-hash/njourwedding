@@ -54,7 +54,7 @@
 .timeline-item {
     display: flex;
     gap: 15px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .timeline-img {
@@ -67,10 +67,14 @@
     height: 180px;
     border-radius: 6px;
     object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
 .timeline-info {
-    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }/* Reset margin bawaan agar tidak terlalu jauh */
 .timeline-info h3, 
 .timeline-info p, 
@@ -80,8 +84,11 @@
 }
 
 .event-desc {
-    font-size: 0.95rem;
-    margin-top: 8px;        /* Jarak antara deskripsi dan elemen di atasnya */
+    font-size: 0.85rem;
+    color: #bbb;
+    line-height: 1.4;
+    margin: 0;
+    text-align: justify;
 }
 
 .maps-link {
@@ -96,7 +103,7 @@
 .timeline-item {
     display: flex;
     gap: 15px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -123,9 +130,9 @@
 }
 .timeline-img img {
     width: 100%;
+    height: auto;
     border-radius: 6px;
-    aspect-ratio: 16/9; /* Biar fotonya persegi panjang kayak episode film */
-    object-fit: cover;
+    object-fit: contain;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
