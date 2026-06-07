@@ -19,11 +19,17 @@
         .intro h1 { color: #E50914; font-size: 4rem; font-weight: bold; animation: zoom 2.5s forwards; }
         @keyframes zoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1.1); opacity: 1; } }
 
-        /* 3. HERO BANNER */
-        header { 
-            height: 85vh; position: relative; overflow: hidden; 
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; background: #000;
-        }
+       /* 3. HERO BANNER */
+header { 
+    height: 65vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px;
+    background: #000;
+}
         .overlay { position: absolute; inset: 0; background: linear-gradient(to top, #141414 20%, transparent 80%), rgba(0,0,0,0.4); z-index: 1; }
         .brand-logo { position: absolute; top: 30px; left: 30px; color: #E50914; font-size: 2.2rem; font-weight: bold; z-index: 10; }
         .text-content { z-index: 10; position: relative; 
@@ -353,11 +359,16 @@
     <audio id="tudum" src="tudum.mp3.mp3"></audio>
     <audio id="music" loop src="Music_anythingyouwant.mp3"></audio>
 
-    <div id="profile-selector">
+<div id="profile-selector">
         <h2 style="font-weight: normal; margin-bottom: 30px;">Who's Watching?</h2>
         <div class="profile-box" onclick="startApp()">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png">
-            <p id="guest">Guest</p>
+            
+            <!-- Tulisan Special Guest tepat di bawah gambar -->
+            <p style="margin: 10px 0 0 0; font-size: 1.1rem;">Special Guest</p>
+            
+            <!-- Tempat nama tamu dari link (URL), otomatis kosong/blank jika tidak ada nama -->
+            <span id="guest" style="display: block; font-size: 0.9rem; color: #aaa; margin-top: 5px;"></span>
         </div>
     </div>
 
@@ -391,7 +402,7 @@
     
     <source src="video_staytuned.mp4" type="video/mp4">
     
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000;"></div>
+    Browser Anda tidak mendukung pemutaran video.
 </video>
 
 
@@ -412,7 +423,7 @@
     </p>
     
 
-    <p class="header-synopsis" style="text-align: justify;">Sedih, senang, tangis, tawa, dan kebahagiaan adalah bagian dari perjalanan dua insan yang tak berujung. Mengisahkan setiap langkah sebagai bagian dari cerita hidup yang nyata. Japunk dan Nias kini memulai episode baru. Tak lagi tentang 'aku' atau 'kamu', melainkan tentang 'kita'. Sebuah kisah panjang yang dimulai dari ikatan pernikahan.</p>   <a href="https://www.instagram.com/reel/DH6VO73ybs-/" target="_blank" style="text-decoration: none;">
+    <p class="header-synopsis" style="text-align: justify;">Sedih, senang, tangis, tawa, dan bahagia. Bagian cerita dari dua individu yang tiada ujungnya. Menceritakan kisah, sebagai bagian dari cerita hidup yang nyata. Japunk dan Nias, memulai episode baru. Tidak lagi tentang "aku" atau "kamu", tapi tentag "kita". Sebuah cerita panjang, dimulai dari ikatan pernikahan.</p>   <a href="https://www.instagram.com/reel/DH6VO73ybs-/" target="_blank" style="text-decoration: none;">
     <div class="btn-play" style="cursor: pointer; display: inline-block;">
         <span id="playIcon">▶</span> <span id="btnText">Trailer Playing</span>
     </div>
@@ -423,14 +434,15 @@
         <section>
             <div class="title">Breaking News</div>
             <div style="background: #222; padding: 15px; border-left: 4px solid #E50914; border-radius: 4px;">
-                               <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.85rem;text-align: justify;">
+                <p style="margin: 0; color: #fff; font-weight: bold;">Serial Pernikahan Terpopuler Tahun Ini!</p>
+                <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.85rem;text-align: justify;">
                     Halo semuanya,
 Akhirnya kami sampai di momen yang selama ini kami nantikan. Setelah melewati banyak cerita, tawa, tantangan, dan berbagai proses yang membuat kami tumbuh bersama, kami memutuskan untuk melangkah ke babak baru dalam hidup kami.
 </p>
 
 <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.85rem;text-align: justify;">
 Tentu perjalanan ke depan tidak akan selalu mudah, tapi kami percaya setiap langkah akan terasa lebih ringan dengan doa dan restu dari keluarga, sahabat, serta orang-orang yang kami sayangi.
-Terima kasih karena sudah menjadi bagian dari perjalanan kami sejauh ini. Kami berharap bisa berbagi kebahagiaan ini dan merayakan hari spesial kami bersama kalian.
+Terima kasih karena sudah menjadi bagian dari perjalanan kami sejauh ini. Kami berharap bisa berbagi kebahagiaan ini dan merayakan hari spesial kami.
 </p>
 
 <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.85rem;">
@@ -441,7 +453,7 @@ See you on our special day!<br>
 
        <section class="favorite-movies">
 
-    <div class="title">Your Favorit Film</div>
+    <div class="title">Film Favorit Anda</div>
 
     <style>
       .swipe-container {
@@ -487,28 +499,28 @@ See you on our special day!<br>
     <div class="swipe-container">
 
         <div class="movie-card">
-            <img src="photo_FF01.png" alt="First Sight"><p>First Sight</p></div>
+            <img src="photo_FF01.png" alt="First Sight"></div>
 
         <div class="movie-card">
-            <img src="photo_FF02.png" alt="Our Journey"><p>Our Journey</p></div>
+            <img src="photo_FF02.png" alt="Our Journey"></div>
 
         <div class="movie-card">
-            <img src="photo_FF03.png" alt="Proposal"> <p>Proposal</p></div>
+            <img src="photo_FF03.png" alt="Proposal"></div>
 
         <div class="movie-card">
-            <img src="photo_FF04.png" alt="NikahFix"><p>NikahFix</p> </div>
+            <img src="photo_FF04.png" alt="NikahFix"></div>
 
         <div class="movie-card">
-            <img src="photo_FF05.png" alt="Summer Train"><p>Summer Train</p></div>
+            <img src="photo_FF05.png" alt="Summer Train"></div>
 
         <div class="movie-card">
-            <img src="photo_FF06.png" alt="Forever Us"><p>Forever Us</p></div>
+            <img src="photo_FF06.png" alt="Forever Us"></div>
 
         <div class="movie-card">
-            <img src="photo_FF07.png" alt="Forever Us"><p>Forever Us</p></div>
+            <img src="photo_FF07.png" alt="Forever Us"></div>
         
          <div class="movie-card">
-            <img src="photo_FF08.png" alt="Forever Us"><p>Forever Us</p></div>
+            <img src="photo_FF08.png" alt="Forever Us"></div>
     </div>
 
 </section>
@@ -519,9 +531,9 @@ See you on our special day!<br>
         <div class="episode-card">
             <div class="episode-img"><img src="photo_eps01.jpeg" alt="Eps 1"></div>
             <div class="episode-info">
-                <h4>Eps 1: The First </h4>
+                <h4>Eps 1: The First Formula</h4>
                 <p class="episode-text" style="color:#aaa; font-size: 0.9rem; text-align: justify; margin: 0 0 10px 0;">
-                    Japunk dan Nias pertama kali saling mengenal saat duduk di bangku SMP sebagai teman biasa tanpa adanya rasa istimewa. Takdir kemudian mempertemukan mereka kembali dalam ajang Olimpiade Matematika dan Fisika saat SMA. Dari chattingan yang semakin intens, tumbuh kedekatan yang perlahan berubah menjadi perasaan yang lebih dalam. Pada 29 September 2019, their story officially began. ✨
+                    Japunk dan Nias pertama kali saling mengenal saat duduk di bangku SMP sebagai teman biasa tanpa adanya rasa istimewa. Takdir kemudian mempertemukan mereka kembali dalam ajang Olimpiade Matematika dan Fisika saat SMA. Dari percakapan yang semakin intens, tumbuh kedekatan yang perlahan berubah menjadi perasaan yang lebih dalam. Pada 29 September 2019, their story officially began. ✨
                 </p>
                 <span class="read-more" onclick="toggleText(this)">Lihat Selengkapnya</span>
             </div>
@@ -530,7 +542,7 @@ See you on our special day!<br>
         <div class="episode-card">
             <div class="episode-img"><img src="photo_eps02.jpeg" alt="Eps 2"></div>
             <div class="episode-info">
-                <h4>Eps 2: Hard Mode (LDR)</h4>
+                <h4>Eps 2: Hard Mode: LDR</h4>
                 <p class="episode-text" style="color:#aaa; font-size: 0.9rem; text-align: justify; margin: 0 0 10px 0;">
                     Perjalanan cinta mereka tidak selalu berjalan mudah. Selama dua tahun, keduanya harus menjalani hubungan jarak jauh dan menghadapi berbagai keterbatasan selama masa perkuliahan. Jarak serta komunikasi yang tidak selalu lancar menjadi tantangan terbesar yang harus dihadapi. Namun, alih-alih menyerah, mereka memilih untuk terus bertahan, saling menguatkan, dan memperjuangkan mimpi yang sama. A real silent struggle that made them stronger than ever. 📱
                 </p>
@@ -543,7 +555,7 @@ See you on our special day!<br>
             <div class="episode-info">
                 <h4>Eps 3: Level Up</h4>
                 <p class="episode-text" style="color:#aaa; font-size: 0.9rem; text-align: justify; margin: 0 0 10px 0;">
-                    Setelah menyelesaikan pendidikan, mereka memasuki babak baru kehidupan dengan sama-sama membangun karier di Jabodetabek. Jarak yang dahulu menjadi penghalang kini berganti menjadi kesempatan untuk tumbuh bersama. Kebersamaan yang semakin erat membawa keyakinan bahwa masa depan terbaik adalah yang dijalani berdua. Hingga akhirnya, pasangan ini memutuskan untuk bertunangan dan melangkah menuju fase berikutnya. 
+                    Setelah menyelesaikan pendidikan, mereka memasuki babak baru kehidupan dengan membangun karier di Jabodetabek. Jarak yang dahulu menjadi penghalang kini berganti menjadi kesempatan untuk tumbuh bersama. Kebersamaan yang semakin erat membawa keyakinan bahwa masa depan terbaik adalah yang dijalani berdua. Hingga akhirnya, pasangan ini memutuskan untuk bertunangan dan melangkah menuju fase berikutnya. No more hiding, just us. 🏙️🤝
                 </p>
                 <span class="read-more" onclick="toggleText(this)">Lihat Selengkapnya</span>
             </div>
@@ -552,7 +564,7 @@ See you on our special day!<br>
         <div class="episode-card">
             <div class="episode-img"><img src="photo_eps04.jpeg" alt="Eps 4"></div>
             <div class="episode-info">
-                <h4>Eps 4: The Final</h4>
+                <h4>Eps 4: The Finale</h4>
                 <p class="episode-text" style="color:#aaa; font-size: 0.9rem; text-align: justify; margin: 0 0 10px 0;">
                     Setelah melewati berbagai cerita, tantangan, tawa, dan air mata, tibalah mereka pada momen yang selama ini dinantikan. Bukan akhir dari sebuah perjalanan, melainkan awal dari kisah baru yang akan terus berlanjut. Japunk dan Nias mengucapkan janji suci dalam ikatan pernikahan dan memulai babak terindah dalam hidup mereka. No more part two, just our forever story starts here. 🎬✨♥️
                 </p>
@@ -568,7 +580,7 @@ See you on our special day!<br>
     <div class="cast-item">
         <img src="photo_thegroom.jpeg" style="width: 220px; height: 330px;">
         <h3>Fitrah Japunk Lucky Anto, S.T.</h3>
-        <p style="color:#aaa; font-size: 0.9rem; margin-top: -10px;">Putra dari Bapak Rujianto & Ibu Partiyem</p>
+        <p style="color:#aaa; font-size: 0.9rem; margin-top: -10px;">Putra dari Bapak Rujianto & Ibu Pariyem</p>
         <p style="color:#E50914; font-weight:bold;">THE GROOM</p>
         
         <a href="https://www.instagram.com/_ant.jp/" target="_blank" class="ig-link">
@@ -578,7 +590,7 @@ See you on our special day!<br>
 
     <div class="cast-item">
         <img src="photo_thebride.jpeg"style="width: 220px; height: 330px;">
-        <h3>Yunias Sila Wati, S.Pd.</h3>
+        <h3>Yunias Sila Wati, S.Pd</h3>
         <p style="color:#aaa; font-size: 0.9rem; margin-top: -10px;">Putri dari Bapak Ramli & Ibu Sri Wahyuni</p>
         <p style="color:#E50914; font-weight:bold;">THE BRIDE</p>
 
@@ -591,33 +603,64 @@ See you on our special day!<br>
 
     
     
-    <section class="timeline-section" style="margin-top:-60px;">
-    <div class="title">Timeline & Location</div>
+<section class="timeline-section" style="margin-top: -20px; padding: 25px 15px;">
+    <div class="title" style="font-size: 1.5rem; border-left: 4px solid #E50914; padding-left: 10px; margin-bottom: 20px; font-weight: bold; color: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+        Timeline & Location
+    </div>
     
     <div class="timeline-list">
-        <div class="timeline-item">
-            <div class="timeline-img">
-                <img src="photo_location.jpeg" alt="Foto Akad Nikah & Resepsi"> 
+        <div class="timeline-item" style="display: flex; gap: 15px; align-items: flex-start; background: #1f1f1f; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+            
+            <div class="timeline-img" style="width: 150px; flex-shrink: 0;">
+                <img src="photo_location.jpeg" alt="Foto Akad Nikah & Resepsi" style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"> 
             </div>
             
-            <div class="timeline-info">
-                <span class="event-label">Akad Nikah & Resepsi</span>
-                <h3 class="event-date">Sabtu, 13 Juni 2026</h3>
-                <span class="time-tag">09:00 WIB</span>
+            <div class="timeline-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+                <div>
+                    <span class="event-label" style="background: #E50914; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; display: inline-block; letter-spacing: 0.5px;">
+                        Akad Nikah & Resepsi
+                    </span>
+                </div>
                 
-                <div class="action-buttons">
-                    <a class="btn-adtocalendar-link" href="#" target="_blank">Simpan di Google Calendar!</a>
-                </div> 
-
-                <p class="event-desc">
-                    Bertempat di Kediaman Mempelai Wanita <br>
-                    <strong>Jl. Ir. Sutami No.1, Sribhawono, Kec. Bandar Sribawono, Kabupaten Lampung Timur, Lampung 34389</strong>
+                <h3 class="event-date" style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 2px 0; letter-spacing: -0.5px; line-height: 1.2;">
+                    Sabtu, 13 Juni 2026
+                </h3>
+                
+                <div>
+                    <span class="time-tag" style="background: #333333; color: #ffffff; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: inline-block;">
+                        🕒 09:00 WIB
+                    </span>
+                </div>
+                
+                <p class="event-desc" style="font-size: 0.85rem; color: #cccccc; line-height: 1.3; margin: 4px 0; text-align: justify;">
+                    Kediaman Mempelai Wanita <br>
+                    <strong style="color: #ffffff; display: block; margin-top: 2px; font-weight: 600;">
+                        Jl. Ir. Sutami No.1, Sri Bawono, Kec. Bandar Sribawono, Kabupaten Lampung Timur, Lampung 34389
+                    </strong>
                 </p>
+                
+                <div class="action-buttons" style="margin-top: 2px;">
+                    <a class="btn-adtocalendar-link" 
+                       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Weddings+of+Japunk+%26+Nias&dates=20260613T020000Z%2F20260613T060000Z&details=Selamat%21+Anda+diundang+ke+acara+pernikahan+Japunk+%26+Nias.+Sampai+jumpa+di+hari+bahagia+kami.&location=Jl.+Ir.+Sutami+No.1%2C+Sri+Bawono%2C+Kec.+Bandar+Sribawono%2C+Kabupaten+Lampung+Timur%2C+Lampung+34389" 
+                       target="_blank" 
+                       style="display: inline-flex; align-items: center; gap: 5px; color: #E50914; font-size: 0.8rem; font-weight: bold; text-decoration: none; letter-spacing: 0.2px;">
+                       
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E50914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                           <line x1="16" y1="2" x2="16" y2="6"></line>
+                           <line x1="8" y1="2" x2="8" y2="6"></line>
+                           <line x1="3" y1="10" x2="21" y2="10"></line>
+                       </svg>
+                       
+                       Simpan di Google Calendar!
+                    </a>
+                </div> 
                 
             </div>
         </div>
     </div>
 </section>
+
 </body>
 
 
@@ -696,21 +739,46 @@ See you on our special day!<br>
 
 
 <section style="background:#111; padding: 40px 25px;">
-           
-    <div class="title">Digital Gift</div>
+            
+    <div class="title">Gift</div>
 
+    <!-- Container 1: BRI -->
     <div style="background:#262626; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom: 20px; text-align: left;">
         <p style="margin: 0; color: #aaa;">BRI - Fitrah Japunk Lucky Anto</p>
         <h3 id="norek1" style="margin: 10px 0; font-size: 1.5rem; letter-spacing: 2px;">1380 0100 1088 531</h3>
         <button onclick="copyNorek1()" style="background:#444; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight: bold;">Salin Rekening</button>
     </div>
 
+    <!-- Container 2: BCA -->
     <div style="background:#262626; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom: 20px; text-align: left;">
         <p style="margin: 0; color: #aaa;">BCA - Yunias Sila Wati</p>
         <h3 id="norek2" style="margin: 10px 0; font-size: 1.5rem; letter-spacing: 2px;">2280353321</h3>
         <button onclick="copyNorek2()" style="background:#444; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight: bold;">Salin Rekening</button>
     </div>
-</section> 
+
+    <!-- Container 3: Send Offline Gift -->
+    <div style="background:#262626; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom: 20px; text-align: left;">
+        <p style="margin: 0; color: #aaa; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Send Gift</p>
+        
+        <!-- Nomor HP Penerima (Diletakkan di atas alamat) -->
+        <p style="margin: 15px 0 5px 0; color: #fff; font-size: 1.1rem; font-weight: bold; letter-spacing: 1px;">
+            0895620809100 <span style="font-size: 0.9rem; color: #E50914; font-weight: normal;">(Nias)</span>
+        </p>
+
+        <!-- Alamat Pengiriman -->
+        <p style="margin: 0 0 15px 0; color: #bbb; font-size: 0.95rem; line-height: 1.5; text-align: justify;">
+            Pagar Hitam Tinggi, Rumah No 44, Gg. Hanura, RT 01/RW 07, Kedung Waringin, Bojong Gede, Kab. Bogor, Jawa Barat 16923
+        </p>
+        
+        <!-- Tombol Buka Google Maps -->
+        <a href="https://www.google.com/maps/search/?api=1&query=-6.497806,106.794083" target="_blank" style="text-decoration: none; display: inline-block;">
+            <button style="background:#E50914; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight: bold;">
+                Send Gift
+            </button>
+        </a>
+    </div>
+
+</section>
 
 <section style="background:#111; padding: 40px 25px;">
             <div class="title">RSVP</div>
@@ -734,23 +802,185 @@ See you on our special day!<br>
                     <p style="color: #666;">Memuat ucapan...</p>
                 </div>
             </div>
-        </section>
-    <section style="background:#141414; padding-bottom: 100px;">
-    <div class="title">Gallery Prewedding</div>
-    <div class="gallery-list">
-        <img src="galeri1.jpg" class="gallery-item-full" onclick="openFull(this.src)">
-        <img src="galeri2.jpg" class="gallery-item-full" onclick="openFull(this.src)">
-        <img src="galeri3.jpg" class="gallery-item-full" onclick="openFull(this.src)">
-        <img src="galeri4.jpg" class="gallery-item-full" onclick="openFull(this.src)">
-        <img src="galeri5.jpg" class="gallery-item-full" onclick="openFull(this.src)">
-        <img src="galeri6.jpg" class="gallery-item-full" onclick="openFull(this.src)">
+       
+
+<section style="background:#141414; padding: 20px 0 30px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px 10px 16px;">
+        <div class="title" style="margin-bottom: 0; font-size: 1.5rem; font-weight: bold; color: white; border-left: 3px solid #E50914; padding-left: 8px;">Gallery Prewedding</div>
+        <div id="gallery-counter" style="color: #aaa; font-size: 0.75rem; font-weight: bold; background: #222; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px;">
+            6/30
+        </div>
+    </div>
+
+    <div class="gallery-list" id="prewed-gallery" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 16px;">
+        <img src="photo_prewed01.jpeg" onclick="bukaLightbox(0)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed02.jpeg" onclick="bukaLightbox(1)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed03.jpeg" onclick="bukaLightbox(2)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed04.jpeg" onclick="bukaLightbox(3)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed05.jpeg" onclick="bukaLightbox(4)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed06.jpeg" onclick="bukaLightbox(5)" style="width: 100%; aspect-ratio: 3/4; min-height: 38vw; object-fit: cover; border-radius: 4px; cursor: pointer;">
+
+        <img src="photo_prewed07.jpeg" class="hidden-photo" onclick="bukaLightbox(6)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed08.jpeg" class="hidden-photo" onclick="bukaLightbox(7)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed09.jpeg" class="hidden-photo" onclick="bukaLightbox(8)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed10.jpeg" class="hidden-photo" onclick="bukaLightbox(9)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed11.jpeg" class="hidden-photo" onclick="bukaLightbox(10)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed12.jpeg" class="hidden-photo" onclick="bukaLightbox(11)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed13.jpeg" class="hidden-photo" onclick="bukaLightbox(12)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed14.jpeg" class="hidden-photo" onclick="bukaLightbox(13)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed15.jpeg" class="hidden-photo" onclick="bukaLightbox(14)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed16.jpeg" class="hidden-photo" onclick="bukaLightbox(15)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed17.jpeg" class="hidden-photo" onclick="bukaLightbox(16)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed18.jpeg" class="hidden-photo" onclick="bukaLightbox(17)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed19.jpeg" class="hidden-photo" onclick="bukaLightbox(18)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed20.jpeg" class="hidden-photo" onclick="bukaLightbox(19)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed21.jpeg" class="hidden-photo" onclick="bukaLightbox(20)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed22.jpeg" class="hidden-photo" onclick="bukaLightbox(21)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed23.jpeg" class="hidden-photo" onclick="bukaLightbox(22)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed24.jpeg" class="hidden-photo" onclick="bukaLightbox(23)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed25.jpeg" class="hidden-photo" onclick="bukaLightbox(24)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed26.jpeg" class="hidden-photo" onclick="bukaLightbox(25)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed27.jpeg" class="hidden-photo" onclick="bukaLightbox(26)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed28.jpeg" class="hidden-photo" onclick="bukaLightbox(27)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed29.jpeg" class="hidden-photo" onclick="bukaLightbox(28)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+        <img src="photo_prewed30.jpeg" class="hidden-photo" onclick="bukaLightbox(29)" style="display: none; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; cursor: pointer;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <span id="btn-toggle-gallery" onclick="toggleGallery()" style="color: #E50914; font-weight: bold; cursor: pointer; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">
+            Read More ▼
+        </span>
     </div>
 </section>
 
-<div id="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+    :root {
+        --swiper-navigation-color: #ffffff;
+        --swiper-navigation-size: 20px;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        z-index: 100001 !important;
+        background: rgba(0,0,0,0.4);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+    }
+    .swiper-button-next::after, .swiper-button-prev::after {
+        font-size: 16px;
+    }
+</style>
+
+<div id="customLightbox" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <span onclick="tutupLightbox()" style="position: absolute; top: 20px; right: 25px; color: white; font-size: 35px; font-weight: 300; cursor: pointer; z-index: 100002; font-family: Arial, sans-serif;">&times;</span>
+    <div class="swiper mySwiper" style="width: 100%; height: 100%;">
+        <div class="swiper-wrapper" id="lightbox-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination" style="color: #ffffff; font-size: 1rem; font-weight: bold; bottom: 30px; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);"></div>
+    </div>
 </div>
+
+<script>
+// A. LOGIKA TOMBOL READ MORE
+function toggleGallery() {
+    const hiddenPhotos = document.querySelectorAll('.hidden-photo');
+    const button = document.getElementById('btn-toggle-gallery');
+    const counter = document.getElementById('gallery-counter');
     
+    if (hiddenPhotos[0].style.display === 'none') {
+        hiddenPhotos.forEach(photo => {
+            photo.style.display = 'block';
+            photo.style.minHeight = '38vw'; // Jaga rasio foto yang baru terbuka
+        });
+        button.innerHTML = 'Show Less ▲';
+        counter.innerHTML = '30/30'; 
+    } else {
+        hiddenPhotos.forEach(photo => photo.style.display = 'none');
+        button.innerHTML = 'Read More ▼';
+        counter.innerHTML = '6/30';
+        document.getElementById('gallery-counter').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// B. LOGIKA LIGHTBOX POPUP
+let swiperInstance = null;
+
+function bukaLightbox(indexAwal) {
+    const lightbox = document.getElementById('customLightbox');
+    const wrapper = document.getElementById('lightbox-wrapper');
+    wrapper.innerHTML = ''; 
+    
+    const semuaGambar = document.querySelectorAll('#prewed-gallery img');
+    
+    semuaGambar.forEach(img => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.style.cssText = "display:flex; align-items:center; justify-content:center;";
+        
+        slide.innerHTML = `
+            <div class="swiper-zoom-container">
+                <img src="${img.src}" style="max-width:100%; max-height:100vh; object-fit:contain;">
+            </div>
+        `;
+        wrapper.appendChild(slide);
+    });
+    
+    lightbox.style.display = 'flex';
+    
+    swiperInstance = new Swiper('.mySwiper', {
+        initialSlide: indexAwal,
+        zoom: true,
+        loop: false,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction', 
+            renderFraction: function (currentClass, totalClass) {
+                return '<span class="' + currentClass + '"></span>' + ' of ' + '<span class="' + totalClass + '"></span>';
+            }
+        }
+    });
+}
+
+function tutupLightbox() {
+    document.getElementById('customLightbox').style.display = 'none';
+    if(swiperInstance) {
+        swiperInstance.destroy(true, true); 
+    }
+}
+
+document.getElementById('customLightbox').addEventListener('click', function(e) {
+    if ((e.target === this || e.target.classList.contains('swiper-zoom-container')) && 
+        !e.target.closest('.swiper-button-next') && 
+        !e.target.closest('.swiper-button-prev')) {
+        tutupLightbox();
+    }
+});
+semuaGambar.forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    // Menambahkan flex layout yang kuat agar isi slide selalu di tengah
+    slide.style.cssText = "display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;";
+    
+    slide.innerHTML = `
+        <div class="swiper-zoom-container" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+            <img src="${img.src}" style="max-width: 100%; max-height: 100%; object-fit: contain; margin: auto;">
+        </div>
+    `;
+    wrapper.appendChild(slide);
+});
+
+</script>
+
+ 
     <p style="text-align: center; color: #555; margin-top: 50px;">A JANIFIX ORIGINAL SERIES</p>
 </section>
 <div class="footer-credit">
@@ -763,7 +993,7 @@ See you on our special day!<br>
 <script>
     // 1. GUEST NAME (FITUR AWAL)
     const params = new URLSearchParams(window.location.search);
-    document.getElementById("guest").innerText = params.get("to") || "Special Guest";
+    document.getElementById("guest").innerText = params.get("to") || "";
 
     // 2. START APP & TUDUM (FITUR AWAL)
     function startApp() {
