@@ -798,10 +798,13 @@ See you on our special day!<br>
 
             <div id="list-ucapan" style="margin-top: 40px;">
                 <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #E50914;">Ucapan Sahabat:</h3>
-                <div id="konten-ucapan">
-                    <p style="color: #666;">Memuat ucapan...</p>
-                </div>
-            </div>
+               <div id="konten-ucapan" style="
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 5px;
+">
+    <p style="color: #666;">Memuat ucapan...</p>
+</div>
        
 
 <section style="background:#141414; padding: 20px 0 30px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
@@ -1115,7 +1118,7 @@ semuaGambar.forEach(img => {
               return;
           }
           // Membalik urutan agar yang terbaru muncul paling atas
-          data.reverse().forEach(row => {
+        [...data].reverse().forEach(row => {
               if(row[0]) { // Hanya tampilkan jika kolom nama tidak kosong
                   list.innerHTML += `
                       <div style="background: #1f1f1f; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #E50914; text-align: left;">
